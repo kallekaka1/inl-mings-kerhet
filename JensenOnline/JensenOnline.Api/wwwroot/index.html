@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#142e4b">
+    <meta name="description" content="Elektronik och tillbehör för din vardag hos JENSENOnline.">
+    <title>JENSENOnline – Teknik för din vardag</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#catalog">Till produkterna</a>
+    <div class="topbar">
+      TEKNIK FÖR VARDAGEN. PLATS FÖR MER.
+    </div>
+    <header>
+      <div class="header-inner">
+        <a class="wordmark" href="./" aria-label="JENSENOnline startsida">JENSEN<span>Online</span><i>.</i></a>
+        <form id="searchForm" role="search">
+          <label class="sr-only" for="search">Sök produkter</label>
+          <input id="search" type="search" placeholder="Vad letar du efter?" autocomplete="off">
+          <button aria-label="Sök produkter" class="search-button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+        </form>
+        <div class="header-actions">
+          <button id="accountButton" class="quiet">Logga in</button>
+          <div id="logoutBox" hidden>
+            <button id="logoutButton" class="quiet">Logga ut</button>
+          </div>
+          <button id="cartButton" class="cart-button">Kundvagn <span id="cartCount">0</span></button>
+        </div>
+      </div>
+      <nav class="nav-inner" aria-label="Huvudmeny">
+        <a href="#catalog">Alla produkter</a>
+        <a id="ordersLink" href="#orderHistory" hidden>Mina order</a>
+        <a id="adminLink" href="#adminArea" hidden>Administration</a>
+        <span id="identity">Kontrollerar inloggning…</span>
+      </nav>
+    </header>
+    <main>
+      <div id="notice" role="status" aria-live="polite" aria-atomic="true"></div>
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">FÖR JOBBET. FÖR DIG.</p>
+          <h1 id="heroTitle">Lite smartare teknik.<br>En enklare vardag.</h1>
+          <p>Ge arbetsdagen rätt förutsättningar med elektronik och tillbehör för din plats i vardagen.</p>
+          <a class="button" href="#catalog">Utforska sortimentet <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit"></div>
+          <div class="art-screen">
+            <div class="screen-shape"></div>
+          </div>
+          <div class="art-stand"></div>
+          <div class="art-keyboard"></div>
+          <div class="art-mouse"></div>
+          <span class="art-caption">DIN PLATS. DINA MÖJLIGHETER.</span>
+        </div>
+      </section>
+      <section id="catalog" class="catalog" aria-labelledby="catalogTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">UTVALT FÖR VARDAGEN</p>
+            <h2 id="catalogTitle">Hitta din nästa favorit</h2>
+          </div>
+          <span id="productCount" class="muted" aria-live="polite"></span>
+        </div>
+        <div id="products" class="grid" aria-busy="true">
+          <p class="empty-state">Hämtar produkter…</p>
+        </div>
+      </section>
+      <section id="loginBox" class="account-panel" aria-labelledby="accountTitle">
+        <div class="account-intro">
+          <p class="eyebrow">DITT JENSENONLINE</p>
+          <h2 id="accountTitle">Välkommen tillbaka.</h2>
+          <p>Logga in för att handla och hålla koll på dina order.</p>
+          <span class="account-decoration" aria-hidden="true">J<span>O.</span></span>
+        </div>
+        <div class="account-forms">
+          <div class="switcher" role="group" aria-label="Välj kontoformulär">
+            <button id="loginTab" type="button" aria-pressed="true">Logga in</button>
+            <button id="registerTab" type="button" aria-pressed="false">Skapa konto</button>
+          </div>
+          <form id="loginForm" class="stack-form">
+            <label for="loginEmail">E-postadress</label>
+            <input id="loginEmail" name="email" type="email" placeholder="namn@exempel.se" autocomplete="username" required>
+            <label for="loginPassword">Lösenord</label>
+            <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+            <button>Logga in →</button>
+          </form>
+          <form id="registerForm" class="stack-form" hidden>
+            <label for="registerEmail">E-postadress</label>
+            <input id="registerEmail" name="email" type="email" placeholder="namn@exempel.se" autocomplete="username" required>
+            <label for="registerPassword">Lösenord</label>
+            <input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" aria-describedby="passwordHelp" required>
+            <p id="passwordHelp" class="form-help">Minst 8 tecken med stor och liten bokstav, siffra och specialtecken.</p>
+            <button>Skapa kundkonto →</button>
+          </form>
+        </div>
+      </section>
+      <section id="customerArea" class="customer-layout" hidden>
+        <div class="panel" id="cartPanel">
+          <p class="eyebrow">DINA UTVALDA</p>
+          <h2>Kundvagn</h2>
+          <div id="cart"></div>
+          <p id="cartTotal" class="cart-total"></p>
+          <button id="checkoutButton" class="full-width">Skapa order →</button>
+        </div>
+        <div class="panel" id="orderHistory">
+          <div class="section-heading">
+            <h2>Mina order</h2>
+            <button id="reloadOrders" class="secondary">Uppdatera order</button>
+          </div>
+          <div id="orders"></div>
+        </div>
+      </section>
+      <section id="adminArea" class="panel" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ADMINISTRATION</p>
+            <h2>Lägg till i sortimentet</h2>
+          </div>
+          <span class="badge">Administratör</span>
+        </div>
+        <form id="productForm" class="product-form">
+          <label>Produktnamn<input name="name" minlength="2" maxlength="100" placeholder="Exempel: Trådlös mus" required></label>
+          <label>Beskrivning<input name="description" maxlength="500" placeholder="En kort beskrivning" ></label>
+          <label>Pris i SEK<input name="price" type="number" step="0.01" min="0.01" max="1000000" placeholder="0,00" required></label>
+          <button>Skapa produkt</button>
+        </form>
+        <p class="form-help">Välj ”Ändra produkt” i sortimentet för att redigera en befintlig produkt.</p>
+      </section>
+    </main>
+    <footer>
+      <a class="wordmark" href="./">JENSEN<span>Online</span><i>.</i></a>
+      <p>Teknik för din vardag.</p>
+      <a href="#catalog">Till sortimentet ↑</a>
+    </footer>
+    <dialog id="editDialog" aria-labelledby="editTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ADMINISTRATION</p>
+          <h2 id="editTitle">Ändra produkt</h2>
+        </div>
+        <button id="closeEdit" class="quiet" type="button" aria-label="Stäng produktredigering">✕</button>
+      </div>
+      <form id="editProductForm" class="stack-form">
+        <label for="editName">Produktnamn</label>
+        <input id="editName" name="name" minlength="2" maxlength="100" required>
+        <label for="editDescription">Beskrivning</label>
+        <textarea id="editDescription" name="description" maxlength="500" rows="3"></textarea>
+        <label for="editPrice">Pris i SEK</label>
+        <input id="editPrice" name="price" type="number" step="0.01" min="0.01" max="1000000" required>
+        <p id="editError" class="form-error" role="alert"></p>
+        <button>Spara ändringar</button>
+        <button id="cancelEdit" type="button" class="secondary">Avbryt</button>
+      </form>
+    </dialog>
+  </body>
+</html>
